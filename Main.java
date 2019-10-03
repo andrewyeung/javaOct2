@@ -6,35 +6,46 @@ public class Main {
 	public static void main(String[] args) {
 	    BankAccount customer1 = new BankAccount();
 		Scanner command = new Scanner(System.in);  // Create a Scanner object
-	    System.out.println("Enter your command: ");
+	    outerloop:
+		do {
+		System.out.println("*******************");
+		System.out.println("Enter your command: ");
 	    System.out.println("Choose 1 for Withdrawal");
         System.out.println("Choose 2 for Deposit");
         System.out.println("Choose 3 for Account Balance");
-        System.out.println("Choose 4 for EXIT");
+        System.out.println("Choose 4 for Transaction History");
+        System.out.println("Choose 5 for EXIT");
 	    int commandnum = command.nextInt(); 
 	    
 	    
 	    switch(commandnum)
 	    {
 	    case 1: 
-	    	System.out.print("Enter money to be withdrawn: ");
-	    	int withdraw = command.nextInt();
-	    	customer1.withdraw(withdraw);
+	    	System.out.println("Enter money to be withdrawn: ");
+	    	double withdrawamount = command.nextDouble();
+	    	customer1.withdraw(withdrawamount);
 	    	break;
 	    case 2:
-	    	System.out.print("Enter money to be deposited: ");
-	    	int deposit = command.nextInt();
-	    	customer1.deposit(deposit);
+	    	System.out.println("Enter money to be deposited: ");
+	    	double depositamount = command.nextDouble();
+	    	customer1.deposit(depositamount);
 	    	break;
 	    case 3:
-	    	System.out.print("Account Balance");
-	    	int accountbalance = command.nextInt();
+	    	System.out.println("Account Balance");
 	    	customer1.printinfo();
 	    	break;
 	    case 4:
-	    	System.out.print("Now exit");
+	    	System.out.println("Deposit History: ");
+	    	customer1.deposithistory();
+	    	System.out.println("Withdrawal History: ");
+	    	customer1.withdrawalhistory();
 	    	break;
+	    case 5:
+	    	System.out.print("Thank you for choosing our bank. Goodbye!");
+	    	break outerloop;
 	    }
+	    }
+	    while (true);
 	}
 
 }
